@@ -83,21 +83,25 @@ export const Agrega = () => {
                             <b>{error}</b>
                         </div>
 
-                        <div className="col-sm-6 mb-3">
-                            <button className="bi-save btn btn-primary btn-block py-2 ont-weight-bold"
-                                onClick={() => { dispatch(saveSupplier(rfc, nombre, direccion)) }}>
+                        <div className="col-sm-12 mb-3">
+                            <button title="Save" className="bi-save btn btn-primary btn-block py-2 ont-weight-bold"
+                                onClick={() => {
+                                    dispatch(saveSupplier(rfc, nombre, direccion));
+                                    onResetForm();
+                                }
+                                }>
                                 -Submit
                             </button>
                         </div>
-                        <div className="col-sm-6 mb-3">
+                        {/*<div className="col-sm-6 mb-3">
                             <button className="bi-x btn btn-primary btn-block py-2 ont-weight-bold"
                                 onClick={() => { onResetForm() }}>
                                 -Reset
                             </button>
-                        </div>
+                        </div>*/}
 
-                        <div className="col-sm-12 mb-3">
-                            <NavLink className="bi-skip-backward btn btn btn-success" to="/app2">
+                        <div className="col-sm-12 mb-3" >
+                            <NavLink title="Back" className="bi-arrow-left-square btn btn btn-dark" to="/app2">
                             </NavLink>
                         </div>
 

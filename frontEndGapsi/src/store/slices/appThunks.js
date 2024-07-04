@@ -107,7 +107,6 @@ export const deleteSupplier = (rfc) => {
                     });
             }).catch(error => {
                 dispatch(setSupplier({
-                    suppliers: [],
                     isError: true,
                     error: error.request.response,
                     bienvenido: '',
@@ -123,7 +122,6 @@ export const saveSupplier = (rfc, nombre, direccion) => {
     return async (dispatch, getState) => {
 
         dispatch(startLoadingSuppliers());
-
         gapsiApi.post(`saveSupplier`,
             {
                 rfc: rfc,
@@ -131,23 +129,25 @@ export const saveSupplier = (rfc, nombre, direccion) => {
                 direccion: direccion,
                 fecha_alta: new Date().toLocaleDateString('en-US')
             }
-        )
-            .then((response) => {
-                dispatch(setSupplier({
-                    suppliers: '',
-                    isError: false,
-                    error: 'Se ha guardado correctamente',
-                    bienvenido: '',
-                    version: ''
-                }));
-            }).catch(error => {
-                dispatch(setSupplier({
-                    suppliers: [],
-                    isError: true,
-                    error: error.request.response,
-                    bienvenido: '',
-                    version: ''
-                }));
-            });
+        ).then((response) => {
+
+            gapsiApi.get(`getSuppliers`)
+                .then((response) => {
+                    dispatch(setSupplier({
+                        suppliers: response.data,
+                        isError: false,
+                        error: 'Se ha guardado correctamente',
+                        bienvenido: '',
+                        version: ''
+                    }));
+                });
+        }).catch(error => {
+            dispatch(setSupplier({
+                isError: true,
+                error: error.request.response,
+                bienvenido: '',
+                version: ''
+            }));
+        });
     }
 }

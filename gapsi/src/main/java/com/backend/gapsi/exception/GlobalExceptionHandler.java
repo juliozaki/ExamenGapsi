@@ -5,8 +5,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.QueryTimeoutException;
+//import org.springframework.dao.DataIntegrityViolationException;
+//import org.springframework.dao.QueryTimeoutException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -78,7 +78,7 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
+    /*@ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<CustomResponse> dataIntegrityViolationException(DataIntegrityViolationException ex, HttpServletRequest request){
         return new ResponseEntity<>(CustomResponse
                 .builder()
@@ -102,7 +102,7 @@ public class GlobalExceptionHandler {
                 .build()
                 , HttpStatus.BAD_REQUEST
         );
-    }
+    }*/
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<CustomResponse> illegalArgumentException(IllegalArgumentException ex, HttpServletRequest request){
